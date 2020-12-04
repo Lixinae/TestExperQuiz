@@ -4,14 +4,12 @@
 
     <title> Chart </title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
-    <div id="myVue" class="container">
-        <div class="body-wrapper">
-            <div class="text"> Hello world </div>
-            <div>
-                <canvas id="myChart"></canvas>
-            </div>
+    <div id="myVue">
+        <div>
+            <canvas id="myChart"></canvas>
         </div>
+        <button v-on:click="ask_pie_chart_data">PieChart</button>
+        <button v-on:click="ask_bar_chart_data">BarChart</button>
     </div>
-     <script src="{{ url_for('static', filename='scripts/basicVue.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/basicVue.js') }}"></script>
 {% endblock %}

@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 api = Api(app, version="1.0", title="API Chart", description="The api to fet chart data", prefix="/api", doc="/api", )
 
-from api_routes import *
-from routes import *
+from api_routes import PieChartData
+from routes import base_page
 
 if __name__ == '__main__':
     app.run()
