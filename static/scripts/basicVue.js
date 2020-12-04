@@ -2,20 +2,22 @@
 const vue = new Vue({
     el: '#myVue',
     data: {
-        limit:5,
+        limit: 5,
     },
     methods: {
-        ask_pie_chart_data: () => {
+        ask_pie_chart_data: function () {
+            let vue_self = this;
             axios.post("/api/PieChartData", {
-                limit: 5
+                limit: vue_self.limit
             })
                 .then(response => {
                     extract_and_display_data_pie_chart(response);
                 });
         },
-        ask_bar_chart_data: () => {
+        ask_bar_chart_data: function () {
+            let vue_self = this;
             axios.post("/api/BarChartData", {
-                limit: 5
+                limit: vue_self.limit
             })
                 .then(response => {
                     extract_and_display_data_bar_chart(response);
@@ -24,7 +26,15 @@ const vue = new Vue({
     },
 
     mounted() {
+        if (localStorage.limit) {
+            this.limit = localStorage.limit;
+        }
         this.ask_pie_chart_data();
+    },
+    watch: {
+        limit(new_limit) {
+            localStorage.limit = new_limit;
+        }
     },
     delimiters: ["<%", "%>"]
 });
