@@ -5,9 +5,14 @@
     <title> Chart </title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <div id="myVue">
-        <div>
-            <canvas id="myChart"></canvas>
+        <div id="myChartPieDiv">
+            <canvas id="myChartPie"></canvas>
+
         </div>
+        <div id="myChartBarDiv">
+             <canvas id="myChartBar"></canvas>
+        </div>
+        <input v-model.number="limit" type="number">
         <button v-on:click="ask_pie_chart_data">PieChart</button>
         <button v-on:click="ask_bar_chart_data">BarChart</button>
     </div>

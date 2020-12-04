@@ -1,7 +1,9 @@
 // N'utiliser qu'une seul vue par fichier, éviter les Vue multiple
 const vue = new Vue({
     el: '#myVue',
-    data: {},
+    data: {
+        limit:5,
+    },
     methods: {
         ask_pie_chart_data: () => {
             axios.post("/api/PieChartData", {
@@ -27,10 +29,19 @@ const vue = new Vue({
     delimiters: ["<%", "%>"]
 });
 
-var options = {
+var options_pie_chart = {
     title: {
         display: true,
         text: 'Repos Github selon le type de licence',
+        position: 'top'
+    },
+    responsive: true,
+};
+
+var options_bar_chart = {
+    title: {
+        display: true,
+        text: 'Taille des repos selon le language',
         position: 'top'
     },
     responsive: true,
@@ -49,39 +60,37 @@ function getRandomColor() {
 }
 
 function my_pie_chart_func(labels, total_repos, colors) {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
+    const ctx = document.getElementById('myChartPie').getContext('2d');
+    return new Chart(ctx, {
         type: 'pie',
         data: {
             labels: labels,
             datasets: [{
-                label: "Nombre de repos github selon le type de license",
+                label: "Nombre de repos github",
                 backgroundColor: colors,
                 data: total_repos
             }]
         },
 
-        options: options
-    });
-    myChart.update();
+        options: options_pie_chart
+    })
 }
 
 function my_bar_chart_func(labels, total_bytes, colors) {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
+    const ctx = document.getElementById('myChartBar').getContext('2d');
+    return new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: "Taille des repo selon le langage de programmation",
+                label: "Taille en Bytes",
                 backgroundColor: colors,
                 data: total_bytes
             }]
         },
 
-        options: options
+        options: options_bar_chart
     });
-    myChart.update();
 }
 
 
