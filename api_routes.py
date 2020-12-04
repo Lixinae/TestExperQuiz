@@ -11,7 +11,7 @@ class ChartPage(Resource):
 
     def get(self):
         data = self.fetchBigQueryData()
-        return jsonify({"data": data})
+        return jsonify(data)
 
     def post(self):
         pass

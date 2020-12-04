@@ -2,16 +2,24 @@
 const vue = new Vue({
     el: '#myVue',
     data: {},
-    methods: {
-        chart: chart
-    },
+    methods: {},
     mounted() {
         axios.get("/api/chartData")
             .then(response => {
                 // Format the data for the chart
-                chart(response.data);
+                //mychart_func(response.data);
+                labels = [];
+                total_repos = [];
+                data = response.data;
+                console.log(data);
+                data.forEach((license_count) => {
+                    labels.push(license_count.license);
+                    total_repos.push(license_count.total);
+                });
 
-                console.log(response.data)
+                console.log(labels);
+                console.log(total_repos);
+                mychart_func(labels,total_repos)
             });
     },
     delimiters: ["<%", "%>"]
@@ -23,23 +31,23 @@ var options = {
         text: 'Repos Github selon le type de licence',
         position: 'top'
     },
-    responsive:true
+    responsive: true
 };
 
 Chart.defaults.global.defaultFontColor = 'black';
 Chart.defaults.global.defaultFontSize = 16;
 
-function chart(data) {
+function mychart_func(labels, total_repos) {
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-          datasets: [{
-            label: "Population (millions)",
-            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-            data: [2478,5267,734,784,433]
-          }]
+            labels: labels,
+            datasets: [{
+                label: "Nombre de repos github selon le type de license",
+                backgroundColor: ["#0053cd", "#8715a2", "#ba5505", "#11e821", "#c45850"],
+                data: total_repos
+            }]
         },
 
         options: options
