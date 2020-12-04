@@ -1,0 +1,20 @@
+{% block head %}
+    {% block scripts %}
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/vuex"></script>
+    {% endblock %}
+
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+
+    {% block content %}
+        <div class="body-content">
+            {% block app_content %}{% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}
