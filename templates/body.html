@@ -4,7 +4,8 @@
 
     <title> Chart </title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <div class="container">
+
+    <div id="myVue" class="container">
         <div class="body-wrapper">
             <div class="text"> Hello world </div>
             <div>
@@ -12,4 +13,5 @@
             </div>
         </div>
     </div>
+     <script src="{{ url_for('static', filename='scripts/basicVue.js') }}"></script>
 {% endblock %}
