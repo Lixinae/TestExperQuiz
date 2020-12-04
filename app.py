@@ -1,5 +1,9 @@
+import os
+
 from flask import Flask
 from flask_restx import Api
+credential_path = "D:\google_key\My First Project-f7da1c12796a.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 
 app = Flask(__name__)
 
