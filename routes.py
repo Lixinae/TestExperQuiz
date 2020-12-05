@@ -1,6 +1,5 @@
-from flask import render_template, make_response, request, jsonify
+from flask import render_template, make_response
 from app import app
-from flask_restx import Resource
 
 
 @app.route('/')
